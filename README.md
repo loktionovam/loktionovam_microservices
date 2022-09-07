@@ -1,19 +1,80 @@
 # loktionovam_microservices
+
 loktionovam microservices repository
 
-## Homework-12: Технология контейнеризации. Введение в Docker
+* [loktionovam_microservices](#loktionovam_microservices)
+  * [Homework-12: Containerization technologies. Introduction to Docker](#homework-12-containerization-technologies-introduction-to-docker)
+  * [Homework-13: Docker containers. Docker under the hood](#homework-13-docker-containers-docker-under-the-hood)
+    * [13.1 What was done](#131-what-was-done)
+    * [13.2 How-to start the project](#132-how-to-start-the-project)
+    * [13.2.1 Docker and docker machine cheat sheet. Building otus-reddit image](#1321-docker-and-docker-machine-cheat-sheet-building-otus-reddit-image)
+    * [13.2.2 Set up infra. Prerequisites - creating the ssh keys and a GCP service account](#1322-set-up-infra-prerequisites---creating-the-ssh-keys-and-a-gcp-service-account)
+    * [13.2.2 Set up infra. Building docker-host-base image by packer](#1322-set-up-infra-building-docker-host-base-image-by-packer)
+    * [13.2.3 Set up infra. Creating the docker host instances via Terraform](#1323-set-up-infra-creating-the-docker-host-instances-via-terraform)
+    * [13.2.2 Set up infra. Start the reddit application](#1322-set-up-infra-start-the-reddit-application)
+    * [13.3 How-to check the project](#133-how-to-check-the-project)
+  * [Homework-14: Docker images. Microservices](#homework-14-docker-images-microservices)
+    * [14.1 What was done](#141-what-was-done)
+    * [14.2 How-to start the project](#142-how-to-start-the-project)
+    * [14.3 How-to check the project](#143-how-to-check-the-project)
+  * [Homework-15: Docker networks, docker-compose](#homework-15-docker-networks-docker-compose)
+    * [15.1 What was done](#151-what-was-done)
+    * [15.2 How-to start the project](#152-how-to-start-the-project)
+    * [15.3 How-to check the project](#153-how-to-check-the-project)
+  * [Homework-16: Gitlab CI. Continuous integration process](#homework-16-gitlab-ci-continuous-integration-process)
+    * [16.1 What was done](#161-what-was-done)
+    * [16.2 How-to start the project](#162-how-to-start-the-project)
+    * [16.3 How-to check the project](#163-how-to-check-the-project)
+  * [Homework-17: Gitlab CI. Continuous delivery](#homework-17-gitlab-ci-continuous-delivery)
+    * [17.1 What was done](#171-what-was-done)
+    * [17.2 How-to start the project](#172-how-to-start-the-project)
+    * [17.3 How-to check the project](#173-how-to-check-the-project)
+  * [Homework-18: Introduction to a monitoring. Monitoring systems](#homework-18-introduction-to-a-monitoring-monitoring-systems)
+    * [18.1 What was done](#181-what-was-done)
+    * [18.2 How-to start the project](#182-how-to-start-the-project)
+    * [18.3 How-to check the project](#183-how-to-check-the-project)
+  * [Homework-19: Monitoring of the application and the infrastructure](#homework-19-monitoring-of-the-application-and-the-infrastructure)
+    * [19.1 What was done](#191-what-was-done)
+    * [19.2 How-to start the project](#192-how-to-start-the-project)
+    * [19.3 How-to check the project](#193-how-to-check-the-project)
+  * [Homework-20: Logging and distributed tracing](#homework-20-logging-and-distributed-tracing)
+    * [20.1 What was done](#201-what-was-done)
+      * [Resolving the problem of posts slow loading](#resolving-the-problem-of-posts-slow-loading)
+    * [20.2 How-to start the project](#202-how-to-start-the-project)
+    * [20.3 How-to check the project](#203-how-to-check-the-project)
+  * [Homework-21: Introduction to Kubernetes](#homework-21-introduction-to-kubernetes)
+    * [21.1 What was done](#211-what-was-done)
+    * [21.2 How-to start the project](#212-how-to-start-the-project)
+    * [21.3 How-to check the project](#213-how-to-check-the-project)
+  * [Homework-22: Kubernetes. Deploying a cluster and applications. Security model](#homework-22-kubernetes-deploying-a-cluster-and-applications-security-model)
+    * [22.1 What was done](#221-what-was-done)
+    * [22.2 How-to start the project](#222-how-to-start-the-project)
+  * [Homework-23: Kubernetes. Networks, Storages](#homework-23-kubernetes-networks-storages)
+    * [23.1 What was done](#231-what-was-done)
+    * [23.2 How-to start the project](#232-how-to-start-the-project)
+    * [23.3 How-to check the projects](#233-how-to-check-the-projects)
+  * [Homework-24: CI/CD in Kubernetes](#homework-24-cicd-in-kubernetes)
+    * [24.1 What was done](#241-what-was-done)
+    * [24.2 How-to check the project](#242-how-to-check-the-project)
+    * [24.3 How-to check the project](#243-how-to-check-the-project)
+  * [Homework-25: Kubernetes. Monitoring and logging](#homework-25-kubernetes-monitoring-and-logging)
+    * [25.1 What was done](#251-what-was-done)
+    * [25.2 How-to start the project](#252-how-to-start-the-project)
+    * [25.3 How-to check the project](#253-how-to-check-the-project)
 
-Основные задания:
+## Homework-12: Containerization technologies. Introduction to Docker
 
-- Установка docker
+Main tasks:
 
-- Базовая работа с консольной утилитой docker - создание, запуск, останов, удаление контейнеров, создание образов из контейнеров, удаление образов
+* Installing docker
 
-Задание со *: описание отличий между container и image
+* Basic working with docker cli - creating, starting, stopping, removing containers, building images from containers, removing images
 
-Про образы.
+Advanced task *: describe the difference between a container and an image
 
-- Docker image состоит из набора read-only слоев, например
+About images.
+
+* Docker image consists of read-only layers, i.e.
 
 ```json
             "Layers": [
@@ -26,11 +87,11 @@ loktionovam microservices repository
      ]
 ```
 
-- Каждый слой - это diff от предыдущего слоя.
+* Each layer is a diff from previous one.
 
-- Разные images используют общие слои (не нужно загружать каждый слой каждый раз если он уже есть).
+* Different images use the common layers (do not need to download every layer if you already have it).
 
-- В образах есть описание контейнеров (см. ниже), которые запущены поверх него
+* There is a description of containers which started from an image
 
 ```json
 
@@ -39,13 +100,13 @@ loktionovam microservices repository
             "Hostname": "b8fc5d0067d0",
 ```
 
-Про контейнеры.
+About containers.
 
-- Создание нового контейнера создает COW read/write слой поверх image, этот слой называется container layer. В нем отличие контейнера от image (когда удаляется контейнер, то удаляется только его r/w слой, нижележащий image остается)
+* Creation of a new container creates a COW read/write layer upon an image, this layer named as a container layer. This is a difference between containers and images (when you remove a containers then the R/W layer is removed too but an underlayer image still exist)
 
-- При записи в файл контейнер просматривает слои (сверху-вниз, от самого нового, до самого старого). Файл копируется в writable слой и вся запись происходит в этот скопированный файл при этом контейнер не видит нижележащие read-only копии этого файла.
+* While the writing the file to container it looks  the layers  (from top to bottom, from the newest to the oldest). The file is copied to a writable layer and the operations of writing take place in this copied file and the container doesn't have access to these underlying read-only copies of this file.
 
-- В контейнерах есть состояние связанное с его runtime (pid, аппаратные ресурсы - память, процессор, описание сетевых интерфейсов), например
+* There is a state of container related to its runtime (pid, hardware resources - a memory, a cpu, network interfaces), i.e.
 
 ```json
         "State": {
@@ -58,32 +119,31 @@ loktionovam microservices repository
                     "IPPrefixLen": 16,
 ```
 
-Контейнеры это про runtime+r/w слой, images - это про хранение/доставку приложений.
+So containers are about runtime+r/w image and images are about storing and delivery of applications.
 
-## Homework-13: Docker контейнеры. Docker под капотом
+## Homework-13: Docker containers. Docker under the hood
 
-### 13.1 Что было сделано
+### 13.1 What was done
 
-Основные задания:
+Main tasks:
 
-- Создание docker host в GCP через docker machine
+* docker host was created in GCP via a docker machine
 
-- Создание образа docker контейнера otus-reddit:1.0
+* docker image  otus-reddit:1.0 was built
 
-- Создание репозитория на docker hub и загрузка в него образа otus-reddit:1.0
+* the docker hub repository was created and the otus-reddit:1.0 image was uploaded
 
-Задания со *:
+Advanced tasks *:
 
-- В docker-monolith/infra/ansible добавлена конфигурация ansible для настройки docker host (роль docker_host) и настроено dynamic inventory через gce.py
+* Added an ansible configuration to docker-monolith/infra/ansible to set up a docker host (role: docker_host) and set up a dynamic inventory via gce.py
 
-- В docker-monolith/infra/packer добавлена конфигурация для создания образа с уже установленным docker
+* Added a configuration to docker-monolith/infra/packer to create an image with installed docker
 
-- В docker-monolith/infra/terraform добавлена конфигурация для подъема инстансов docker-host-xxx, количество которых, задается переменной count
+* Added a configuration to docker-monolith/infra/terraform to up and running instances docker-host-xxx the number of them is set up in the count variable
 
+### 13.2 How-to start the project
 
-### 13.2 Как запустить проект
-
-### 13.2.1 Шпаргалка по командам docker, docker machine. Создание образа otus-reddit
+### 13.2.1 Docker and docker machine cheat sheet. Building otus-reddit image
 
 ```bash
 docker-machine create --driver google  --google-machine-image https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/family/ubuntu-1604-lts  --google-machine-type n1-standard-1   --google-zone europe-west1-b  docker-host
@@ -100,10 +160,10 @@ export DOCKER_MACHINE_NAME="docker-host"
 
 eval $(docker-machine env docker-host)
 
-# Запустить htop (PID из container namespaces)
+# start htop (PID from the container namespaces)
 docker run --rm -ti tehbilly/htop
 
-# Запустить htop (PID из host namspaces)
+# start htop (PID из host namspaces)
 docker run --rm --pid host -ti tehbilly/htop
 
 docker run --help | grep "\-\-pid "
@@ -117,42 +177,41 @@ docker build -t reddit:latest .
 # --network - use host network
 docker run --name reddit -d --network=host reddit:latest
 
-# Создать  tag алиас на reddit:latest
+# create a tag alias to reddit:latest
 docker tag reddit:latest loktionovam/otus-reddit:1.0
-# Запушить образ в docker registy
+# push the docker image to the docker registy
 docker login
 docker push loktionovam/otus-reddit:1.0
 
-# Запустить существующий контейнер
+# start the existing container
 docker stop reddit
 docker start reddit
 
-# Логи
+# logs
 docker logs reddit -f
 
-# Запустить bash
+# start bash
 docker exec -it reddit bash
 
-# Удалить контейнер
+# remove the container
 docker rm reddit
 
-# Запуск контейнера без запуска приложения
+# starting the container without starting the application
 docker run --name reddit --rm  -it loktionovam/otus-reddit:1.0 bash
 root@96aba478ca67:/# ps ax | grep start
    16 pts/0    S+     0:00 grep --color=auto start
 
-# Полная информация об образе
+# the full information about the image
 docker inspect loktionovam/otus-reddit:1.0 
 
-# Часть информации об образе
 docker inspect loktionovam/otus-reddit:1.0 -f '{{.ContainerConfig.Cmd}}'
 [/bin/sh -c #(nop)  CMD ["/start.sh"]]
 
-#Вывод списка измененных файлов и каталогов в контейнере
+# show the changed files and directories in the container
 docker diff reddit
 ```
 
-### 13.2.2 Настройка infra. Подготовительные действия - создание ssh ключей и сервисного аккаунта в GCP
+### 13.2.2 Set up infra. Prerequisites - creating the ssh keys and a GCP service account
 
 ```bash
 export REPO_PATH=$(pwd)
@@ -164,81 +223,80 @@ gcloud iam service-accounts create docker-user --display-name docker-user
 gcloud projects add-iam-policy-binding "${GCP_PROJECT}" --member serviceAccount:docker-user@"${GCP_PROJECT}".iam.gserviceaccount.com --role roles/editor
 ```
 
-### 13.2.2 Настройка infra. Создание образа docker-host-base с помощью packer
+### 13.2.2 Set up infra. Building docker-host-base image by packer
 
 ```bash
-# Создание образа хоста с предустановленным docker engine
+# Creating a docker host image with a preinstalled docker engine
 cd "${REPO_PATH}"/docker-monolith/infra
 packer build -var-file=packer/variables.json packer/docker_host.json
 ```
 
-### 13.2.3 Настройка infra. Создание инстансов docker host через Terraform
+### 13.2.3 Set up infra. Creating the docker host instances via Terraform
 
 ```bash
 cd "${REPO_PATH}"/docker-monolith/infra/terraform
-# Перед выполением команд нужно настроить terrafrom.tfvars файл для создания remote backend
+# Before you execute the commands you need to set up terraform.tfvars to create a remote backend
 terraform init
 terraform apply
 
 cd "${REPO_PATH}"/stage
-# Перед выполением команд нужно настроить terrafrom.tfvars файл для создания инстансов docker host и правил файерволла
+# Before you execute the commands you need to configure terraform.tfvars to create the docker host instances and the firewall rules
 terraform init
 terrafrom apply
 ```
 
-### 13.2.2 Настройка infra. Запуск reddit app
+### 13.2.2 Set up infra. Start the reddit application
 
 ```bash
 cd "${REPO_PATH}"/docker-monolith/infra/ansible
-# Скопировать файл с секретными данными от service account
+# Copy the service account secret file
 gcloud iam service-accounts keys create environments/stage/gce-service-account.json --iam-account docker-user@"${GCP_PROJECT}".iam.gserviceaccount.com
 
-# Настроить gce dynamic inventory
+# Configure gce dynamic inventory
 ansible-playbook playbooks/gce_dynamic_inventory_setup.yml
 
-# Развернуть reddit app на инстансах созданных ранее, через terraform
+# Deploy the reddit app to the instances that were created earlier by terraform
 ansible-playbook playbooks/site.yml
 ```
 
-### 13.3 Как проверить проект
+### 13.3 How-to check the project
 
-- Приложение будет доступно в веб-браузере по адресу http://ip_address:9292, где список ip_address можно узнать командами
+* Go to link <http://ip_address:9292> to access to the reddit application, execute this to show ip_address:
 
 ```bash
-# Получить список всех ip адресов
+# get all ip addresses
 cd "${REPO_PATH}"/docker-monolith/infra/terraform/stage
 terraform output
 ```
 
-## Homework-14: Docker образы. Микросервисы
+## Homework-14: Docker images. Microservices
 
-### 14.1 Что было сделано
+### 14.1 What was done
 
-Основные задания:
+Main tasks:
 
-- Созданы docker образы для микросервисов comment, ui, post
-- Создана docker сеть для приложения reddit
-- Создан docker том для данных mongodb
-- Запущены контейнеры на основе созданных образов
+* built docker images for comment, ui, post microservices
+* created the reddit application docker network
+* created the mongodb docker volume
+* created the containers based on built images
 
-Задания со *:
+Advanced tasks *:
 
-- Изменение сетевых алиасов, использование env переменных
+* Changing the network aliases, usage of env variables
 
 ```bash
-# Пример решения
 docker run -d --network=reddit --network-alias=post_db_alias --network-alias=comment_db_alias mongo:latest
 docker run -d --network=reddit --network-alias=post_alias -e 'POST_DATABASE_HOST=post_db_alias' loktionovam/post:1.0
 docker run -d --network=reddit --network-alias=comment_alias -e 'COMMENT_DATABASE_HOST=comment_db_alias' loktionovam/comment:1.0
 docker run -d --network=reddit --network-alias=ui_alias -e 'POST_SERVICE_HOST=post_alias' -e 'COMMENT_SERVICE_HOST=comment_alias' loktionovam/ui:1.0
 ```
 
-Задания со *:
+Advanced tasks *:
 
-- Уменьшены размеры образов comment, ui, post
+* Reduce the image size of comment, ui, post
 
 ```bash
-# Размеры образов ui
+# docker ui image size
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 loktionovam/ui      3.2                 b92f70287088        11 seconds ago      34.5MB # alpine, multi-stage build, cache cleaning
 loktionovam/ui      3.1                 8e94d1738f8f        4 minutes ago       37.5MB # alpine, multi-stage build
@@ -248,7 +306,7 @@ loktionovam/ui      1.0                 1dc4afe3d94c        26 minutes ago      
 ```
 
 ```bash
-# Размеры образов post
+# docker post image size
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 loktionovam/post    2.2                 e13a2539eef3        6 minutes ago       35.1MB # alpine:3.8, multi-stage build, venv packages cleaning, pyc files removing
 loktionovam/post    2.1                 a4978e47831e        13 minutes ago      57.5MB # alpine:3.8, multi-stage build, venv packages cleaning
@@ -257,15 +315,15 @@ loktionovam/post    1.0                 228a932d5c0d        3 hours ago         
 ```
 
 ```bash
-# Размеры образов comment
+# docker comment image size
 REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
 loktionovam/comment   2.0                 d42d889bed54        18 seconds ago      30.1MB # alpine, multi-stage build, cache cleaning
 loktionovam/comment   1.0                 d1e034889328        4 hours ago         769MB # ruby 2.2
 ```
 
-### 14.2 Как запустить проект
+### 14.2 How-to start the project
 
-- Предполагается, что перед запуском проекта уже существует **docker-host** и имеет адрес **docker_host_ip**
+* we assume that there is the  **docker-host** and it has address  **docker_host_ip**
 
 ```bash
 docker-machine ls
@@ -275,7 +333,7 @@ docker-host   *        google   Running   tcp://docker_host_ip:2376           v1
 eval $(docker-machine env docker-host)
 ```
 
-- Создание docker образов микросервисов comment, post, ui
+* To build docker images for comment, post and ui microservices
 
 ```bash
 cd src
@@ -284,7 +342,7 @@ docker build -t loktionovam/post:2.2  ./post-py
 docker build -t loktionovam/ui:3.2  ./ui
 ```
 
-- Запуск проекта
+* To start the project
 
 ```bash
 docker network create reddit
@@ -300,28 +358,28 @@ docker run -d --network=reddit --network-alias=comment loktionovam/comment:2.0
 docker run -d --network=reddit -p 9292:9292 loktionovam/ui:3.2
 ```
 
-### 14.3 Как проверить проект
+### 14.3 How-to check the project
 
-После запуска, reddit приложение будет доступно по адресу <http://docker_host_ip:9292>, при этом можно создать пост и оставить комментарий.
+To check the project go to <http://docker_host_ip:9292> and you will be able to create a post and add a comment
 
-## Homework-15: Docker сети, docker-compose
+## Homework-15: Docker networks, docker-compose
 
-Основные задания:
+Main tasks:
 
-- Работа с none, host, bridge сетями docker
-- Установка docker-compose
-- Сборка образов приложения reddit с помощью docker-compose
-- Запуск приложения reddit с помощью docker-compose
-- Изменение префикса в docker-compose
+* Working with none, host, bridge docker networks
+* Install docker-compose
+* Build reddit application images via docker-compose
+* Launch the reddit application via docker-compose
+* Change a prefix in docker-compose
 
-В docker-compose имена префиксов контейнеров задаются env переменной **COMPOSE_PROJECT_NAME**, которая по умолчанию равна названию каталога с проектом:
+In docker-compose the names of prefixes of containers are set up by env variable **COMPOSE_PROJECT_NAME** that by default is equal to a project directory name:
 
 ```bash
 cd /some/path/to/project_directory
 basename $(pwd)
 ```
 
-Эту переменную можно переопределить в **.env** файле:
+You can redefine this variable in **.env**:
 
 ```bash
 # Defaul setting COMPOSE_PROJECT_NAME to the basename
@@ -329,31 +387,31 @@ basename $(pwd)
 # COMPOSE_PROJECT_NAME=
 ```
 
-Задания со *:
+Advanced tasks *:
 
-- Создание docker-compose.override.yml, который позволяет изменять код приложений без пересборки docker образов и запускать ruby приложения в режиме отладки с двумя воркерами.
+* Create docker-compose.override.yml that allows to change application code without a rebuilding of docker images and to launch ruby applications in a debug mode with two workers.
 
-### 15.1 Что было сделано
+### 15.1 What was done
 
-- Создан контейнер с none network driver, проверена конфигурация его сетевых интерфейсов
+* Created a container with none network driver, tested its network interfaces configuration
 
-- Создан контейнер с host network driver, проверена конфигурация его сетевых интерфейсов
+* Created a container with host network driver, tested its network interfaces configuration
 
-- Созданы контейнеры с bridge network driver, которым были присвоены сетевые алиасы
+* Created a container with bridge network driver, applied the network aliases
 
-- Созданы docker сети front_net (подключены контейнеры ui, post, comment), back_net (подключены контейнеры mongo, post, comment)
+* Created docker networks: front_net (for ui, post, comment containers) and back_net (for mongo, post, comment containers)
 
-- Проверена работа сетевого стека linux (net namespaces, iptables) при работе с docker
+* Checked out a linux network stack (net namespaces, iptables)
 
-- Установлен docker-compose, написан docker-compose.yml для автоматического создания и запуска docker ресурсов
+* Installed docker-compose, docker-compose.yml was written
 
-- Создан .env файл для настройки docker-compose через environment переменные (версии образов, префикс проекта и т. д.)
+* Developed .env to set up docker-compose via environment variables (image versions, a project prefix and so on)
 
-- Создан docker-compose.override.yml позволяющий изменять код приложения без пересоздания образа и запускать puma сервер в режиме отладки. Соответственно, изменены Dockerfile в микросервисах comment, ui, post для поддержки docker-compose.override.yml
+* Developed docker-compose.override.yml that allows to change application code without a rebuilding of docker images and to launch ruby applications in a debug mode.
 
-### 15.2 Как запустить проект
+### 15.2 How-to start the project
 
-- Предполагается, что перед запуском проекта уже существует **docker-host** и имеет адрес **docker_host_ip**, а также установлен **docker-compose**
+* We assume that there is  **docker-host** and it has an address **docker_host_ip** and also **docker-compose** is installed:
 
 ```bash
 docker-machine ls
@@ -368,50 +426,50 @@ cd src
 docker-compose up -d
 ```
 
-### 15.3 Как проверить проект
+### 15.3 How-to check the project
 
-После запуска, reddit приложение будет доступно по адресу <http://docker_host_ip:9292>, при этом можно создать пост и оставить комментарий.
+Go to the link <http://docker_host_ip:9292> to access to reddit application.
 
-## Homework-16: Gitlab CI. Построение процесса непрервыной интеграции
+## Homework-16: Gitlab CI. Continuous integration process
 
-Основные задания: подготовить инсталляцию Gitlab CI, подготовить репозиторий с кодом приложения, описать для приложения этапы непрервыной интеграции
+Main tasks: install Gitlab CI, create a code repository, describe continuous integration stages
 
-Задания со *: автоматизировать развертывание и регистрацию gitlab runner, добавить интеграцию pipeline со slack чатом
+Advanced tasks *: automate a deployment and a registering a gitlab runner, integrate a gitlab pipeline with slack
 
-### 16.1 Что было сделано
+### 16.1 What was done
 
-- Добавлен boot disk size параметр в конфигурацию модуля docker_host в terraform, добавлена конфигурация файерволла для docker host в terraform
+* Added boot disk size parameter to the docker_host terraform module, added a firewall configuration to the docker host in terraform
 
-- Добавлена поддержка docker compose для ansible роли docker_host
+* Added a docker compose support to the docker_host ansible role
 
-- Пересобран packer образ для поддержки docker compose docker-host-base
+* Rebuilt packer image to support docker compose docker-host-base
 
-- Добавлена gitlab_omnibus ansible роль для автоматического развертывания сервера с gitlab, для роли написаны тесты с использованием molecula и testinfra, добавлен healthchek в конфигурацию docker compose
+* Added gitlab_omnibus ansible role to auto deploy gitlab server, developed the role tests (molecula and testinfra), added a healthchek to docker compose configuration
 
-- Добавлен gitlab_omnibus.yml плейбук для развертывания инстанса gitlab в GCP
+* Added gitlab_omnibus.yml playbook to deploy a gitlab instance to GCP
 
-- Добавлена конфигурация пайплана gitlab
+* Added a gitlab pipeline
 
-- Добавлена gitlab_runner ansible роль для автоматического развертывания gitlab runner, для роли написаны тесты с использованием molecula и testinfra
+* Added gitlab_runner ansible role to auto deploy gitlab runner, developed the role tests (molecula and testinfra)
 
-- Добавлен gitlab_runner.yml плейбук для автоматического развертывания и регистрации gitlab runner
+* Added gitlab_runner.yml playbook to auto deploy and registering a gitlab runner
 
-- Добавлено reddit приложение и тесты для него, настроен запуск тестов в gitlab CI/CD
+* Added the reddit application and tests, added the tests running to a gitlab CI/CD
 
-- Добавлена интеграция со slack чатом <https://devops-team-otus.slack.com/messages/CB4BAETU5/>
+* Added slack integration <https://devops-team-otus.slack.com/messages/CB4BAETU5/>
 
-### 16.2 Как запустить проект
+### 16.2 How-to start the project
 
-Предполагается, что уже существует конфигурация terraform настроенная в рамках выполнения **Homework-13**
+We assume that there is a terraform configuration that is described here **Homework-13**
 
-- Собрать новый образ docker-host-base с поддержкой docker compose через packer
+* Build a new docker-host-base with supporting of a docker compose via packer
 
 ```bash
 cd infra
 packer build -var-file=packer/variables.json packer/docker_host.json
 ```
 
-- Настроить boot size в terraform и переразвенуть docker хост
+* Set up a boot size in terraform and redeploy the docker host
 
 ```bash
 cd infra/terraform/stage
@@ -422,82 +480,82 @@ terraform apply -auto-approve
 terraform output
 ```
 
-- Установить gitlab сервер
+* Install a gitlab server
 
 ```bash
 cd gitlab-ci/ansible
 ansible-playbook playbooks/gitlab_omnibus.yml
 ```
 
-- Настроить пользователя, проект и т. д. в gitlab сервере
+* Configure a user, a project and ao on in the gitlab server
 
-- Установить и зарегистрировать gitlab runner. Перед запуском плейбука необходимо настроить в `~/.ansible/gilab_runner_credentials.yml` переменные `gitlab_runner_token` и `gitlab_runner_coordinator_url`
+* Install and register a gitlab runner. Set up the `gitlab_runner_token` и `gitlab_runner_coordinator_url` variables in `~/.ansible/gilab_runner_credentials.yml` and execute the playbook:
 
 ```bash
 cd gitlab-ci/ansible
 ansible-playbook playbooks/gitlab_runner.yml
 ```
 
-### 16.3 Как проверить проект
+### 16.3 How-to check the project
 
-После настройки CI/CD в gitlab, можно запушить изменения и проверить, что статус пайплайна будет **passed**
+After configuration of the CI/CD in the gitlab, you can push the changes and check the pipeline status out (**passed**)
 
 ```bash
 git remote add gitlab http://<your-vm-ip>/homework/example.git
 git push gitlab gitlab-ci-1
 ```
 
-## Homework-17: Устройство Gitlab CI. Непрерывная поставка
+## Homework-17: Gitlab CI. Continuous delivery
 
-Основные задания: расширить существующий пайплайн в gilab ci, определить окружения
+Main tasks: improve the existing pipeline and add the environments to it
 
-Задания со *: при пуше новой ветки должен создаваться сервер для окружения с возможностью удалить его кнопкой
+Advanced tasks *: a new server should be automatically created for environment after pushing a new branch. There also should be ability to remove this server by clicking on a button in a gitlab interface
 
-Задания с **: в шаг build добавить сборку контейнера с приложением reddit, контейнер деплоить на созданный для ветки сервер
+Advanced tasks **: add building of the docker images of the reddit application and the built images should be deployed to the server which was created for this branch
 
-### 17.1 Что было сделано
+### 17.1 What was done
 
-- В конвейер непрервывной поставки были добавлены шаги **staging, production** использующие различные окружения
+* Added **staging, production** steps to the pipeline
 
-- В ansible создана роль **reddit_monolith** для деплоя контейнера на docker хост
+* Added **reddit_monolith** ansible role to deploy container to a docker host
 
-- Изменен плейбук **reddit_app.yml** с учетом **reddit_monolith**
+* Changed **reddit_app.yml** playbook in consideration of **reddit_monolith**
 
-- Написан Dockerfile для сборки docker образа reddit приложения
+* Developed reddit application Dockerfile
 
-- Написан Dockerfile для сборки docker образа провижинера приложения, содержащий в себе terraform, ansible
+* Developed Dockerfile that contains the infrastructure utilities like terraform and ansible
 
-- В docker_host module (terraform) добавлены ресурсы для провижинга приложения
+* Added the resources to provisioning the application to docker_host module (terraform)
 
-- В шаг build добавлена сборка образов reddit, app_provision с их последующим сохранением в docker registry
+* Building and pushing the reddit, app_provision docker images added to the build step
 
-- В конвейер непрервывной поставки был добавлен шаг **branch_start_review** для автоматического создания серверов для каждой ветки и деплоя приложения reddit. При этом, для каждой ветки через terrafrom workspace создается инстанс docker хоста, на который плейбуком reddit_app.yml деплоится reddit приложение
+* Added **branch_start_review** step to CD to auto deploy the servers per branch and deploy the reddit application to them. For each branch a new instance of a docker host is created by the terraform workspace and the reddit application is deployed by reddit_app.yml playbook to it
 
-- В конвейер непрервывной поставки был добавлен шаг branch_stop_review для удаления серверов
+* Added **branch_stop_review** to CD to remove the servers
 
-### 17.2 Как запустить проект
+### 17.2 How-to start the project
 
-Предполагается, что уже настроен gitlab сервер и зарегистрирован gitlab runner
+We assume that a gitlab server is already configured and a gitlab runner is registered on it
 
-В настройках CI/CD gitlab server нужно добавить следующие переменные:
+Add these variables to CI/CD:
 
-- `CI_GOOGLE_CREDENTIALS` - переменная для подключения terraform к GCP
+* `CI_GOOGLE_CREDENTIALS` - credentials to connect to GCP via terraform
 
-- `DOCKER_REGISTRY_USER` - пользователь docker hub registry
+* `DOCKER_REGISTRY_USER` - docker hub registry user
 
-- `DOCKER_REGISTRY_PASSWORD` - пароль docker hub registry
+* `DOCKER_REGISTRY_PASSWORD` - docker hub registry password
 
-- `GCE_SERVICE_ACCOUNT` - содержимое credentials файла от сервисного аккаунта GCP. Используется для настройки динамического инвентори через gce.py (роль ansible gce_py)
+* `GCE_SERVICE_ACCOUNT` - content of a GCP service account credentials file. Used to set up a dynamic inventory via gce.py (gce_py ansible role)
 
-- `GCP_PROJECT` - название проекта в GCP
+* `GCP_PROJECT` - GCP project name
 
-- `SSH_PRIVATE_KEY`, `SSH_PUBLIC_KEY` - пара ssh ключей для подключения к docker host (используются при провиженге через ansible)
+* `SSH_PRIVATE_KEY`, `SSH_PUBLIC_KEY` - ssh key pair to connect to a docker host
 
-После настройки environment переменных при пуше новой ветки в gitlab будет автоматичкски создано окружение и на него развернуто reddit приложение
+After a pushing a new branch to a gitlab server a new environment will be created and the reddit application will be deployed on it.
 
-### 17.3 Как проверить проект
+### 17.3 How-to check the project
 
-После успешного выполнения шага **branch_start_review**, приложение будет доступно по адресу <http://docker_host_external_ip:9292>
+After **branch_start_review** step completed successfully go to the link <http://docker_host_external_ip:9292> to connect to a newly deployed application
 
 ```bash
 
@@ -509,109 +567,107 @@ docker_host_external_ip = [
 Job succeeded
 ```
 
-После проверки приложения, сервер можно удалить нажав на **branch_stop_review**
+After the application review delete it by pressing **branch_stop_review**
 
-## Homework-18: Введение в мониторинг. Системы мониторинга
+## Homework-18: Introduction to a monitoring. Monitoring systems
 
-Основное задание: запуск, конфигурация Prometheus; мониторинг состояния микросервисов; сбор метирк хоста с использованием экспортера
+Main task: install and configure a Prometheus; microservices monitoring; host metrics collection by a exporter
 
-Задание со *: добавить в Prometheus мониторинг mongodb, зафиксировав версию образа экспортера на последнюю стабильную
+Advanced task *: add mongodb monitoring to Prometheus, pin the exporter version to the latest stable
 
-Задание со *: добавить в Prometheus blackbox мониторинг сервисов comment, post, ui, зафиксировав версию образа экспортера на последнюю стабильную
+Advanced task *: add comment, post, ui monitoring to Prometheus via blackbox exporter, pin the exporter version to the latest stable
 
-Задание со *: добавить Makefile, которые умеет собирать и пушить образы docker контейнеров
+Advanced task*: develop a Makefile to build and push docker images
 
-### 18.1 Что было сделано
+### 18.1 What was done
 
-- Изменена структура каталогов проекта, добавлены каталоги docker, monitoring
+* The project structure refactoring, added docker and monitoring directories
 
-- В конфигурацию docker compose добавлен сервис prometheus
+* Added a prometheus service to the docker compose
 
-- В конфигурацию prometheus и docker compose добавлен node-exporter
+* Added node-exporter to the prometheus and docker compose
 
-- Добавлен Dockerfile для сборки mongodb prometheus exporter от percona (результирующий образ построен на scratch), добавлен мониторинг mongodb в prometheus и docker compose
+* Developed Dockerfile to build a mongodb prometheus exporter by percona (the docker image built upon scratch), added a mongodb monitoring to prometheus and docker compose
 
-- Добавлен Dockerfile для сборки blackbox exporter; добавлен мониторинг микросервисов ui (blackbox-http), post (blackbox-tcp), comment (blackbox-tcp)
+* Developed Dockerfile to build a blackbox exporter; added  ui (blackbox-http), post (blackbox-tcp), comment (blackbox-tcp) monitoring
 
-- Добавлен Makefile для сборки образов docker контейнеров и их пуша в docker hub; добавлена возможность старта и удаления микросервисов через Makefile
+* Developed the Makefile to build and push docker images; starting and stopping microservices by the Makefile
 
-### 18.2 Как запустить проект
+### 18.2 How-to start the project
 
-- Предполагается, что уже установлен **docker, docker compose**
+* We assume that the **docker, docker compose** are already installed
 
-- Установить make
+* Install make
 
 ```bash
 apt-get update && apt-get install make
 ```
 
-- Собрать образы контейнеров и локально запустить их через docker compose можно командой
+* To build and run containers
 
 ```bash
 make up
 ```
 
-- Собрать образы контейнеров и запушить их в docker hub репозиторий можно командой
+* To build and push docker images
 
 ```bash
 make all
 ```
 
-- Остановить и удалить запущенные контейнеры
+* To stop and remove running containers
 
 ```bash
 make down
 ```
 
-Примеры работы с отдельными микросервисами:
-
-- Собрать docker образ микросервиса (ui) можно командой
+* To build the docker image (ui)
 
 ```bash
 make ui_build
 ```
 
-- Запушить docker образ микросервиса (ui) можно командой
+* To push the docker image (ui)
 
 ```bash
 make ui_push
 ```
 
-- Собрать и запушить образ отдельного микросервиса (ui)
+* To build and push image (ui)
 
 ```bash
 make ui
 ```
 
-### 18.3 Как проверить проект
+### 18.3 How-to check the project
 
-- В корне репозитория выполнить
+* Run in the root of the repository
 
 ```bash
 make up
 ```
 
-После сборки и запуска контейнеров по адресу <http://localhost:9292> будет доступно reddit приложение
+After the containers building and running go to the link <http://localhost:9292>
 
-По адресу <http://localhost:9090> будет доступен интерфейс prometheus
+Go to the <http://localhost:9090> to access to prometheus interface
 
-- В корне репозитория выполнить
+* To build and push all containers
 
 ```bash
 make all
 ```
 
-После сборки и пуша, образы контейнеров будут доступны в dockerhub по ссылке: <https://hub.docker.com/r/loktionovam>
+they will be here <https://hub.docker.com/r/loktionovam>
 
-## Homework-19: Мониторинг приложения и инфраструктуры
+## Homework-19: Monitoring of the application and the infrastructure
 
-### 19.1 Что было сделано
+### 19.1 What was done
 
-Основное задание: мониторинг docker контейнеров; визуализация метрик; сборк метрик работы приложения и бизнес метрик; настройка и проверка алертинга
+Main task: docker containers monitoring; metrics visualization; the application metrics collection and collecting of business metrics; alerting
 
-Задание со *: в Makefile добавлены цели для контейнеров telegraf, grafana, stackdriver, autoheal
+Advanced task *: added telegraf, grafana, stackdriver, autoheal targets to the Makefile
 
-Задание со *: в ansible роль docker-host добавлена настройка докер-хоста для отдачи метрик в prometheus, в grafana добавлен дашборд для их отображения (Docker_Engine_Metrics.json)
+Advanced task *: added a docker host configuration to collect the metrics by a prometheus to docker-host ansible role, added grafana dashboard to visualize them (Docker_Engine_Metrics.json)
 
 <https://grafana.com/dashboards/1229>
 
@@ -622,15 +678,15 @@ curl http://172.17.0.1:9323/metrics 2>/dev/null| grep -E "^# " -v | wc -l
 ```
 
 ```bash
-# Cadvisor metrics (их общее число зависит от числа контейнеров)
+# Cadvisor metrics (their total count is depends on how many containers are running)
 curl http://localhost:8080/metrics 2>/dev/null| grep -v "^# " | wc -l
 3950
 
-# Число уникальных метрик в Cadvisor
+# the number of unique metrics in Cadvisor
 total: 58
 ```
 
-Задание со *: добавлен мониторинг через telegraf, добавлен grafana dashboard `Docker_Performance_Monitoring.json` для отображения метрик собираемых через telegraf
+Advanced task *: added monitoring via telegraf, added a grafana dashboard `Docker_Performance_Monitoring.json` to visualize the metrics that are collected by the telegraf
 
 ```bash
 # telegraf docker metrics
@@ -638,13 +694,13 @@ curl http://localhost:9273/metrics 2>/dev/null 2>/dev/null | grep -v "#"  metric
 926
 ```
 
-Задание со *: добавлен `UIHTTPHighResponceLatency` алерт (95-й перцентиль времени ответа UI)
+Advanced task *: added `UIHTTPHighResponceLatency` alert (95-й percentile of UI response time)
 
-Задание со *: настроена интеграция alertmanager с mailgun для рассылки оповещений на почту Для alertmanager я не нашел хорошего способа передачи секретных данных, кроме как хранить их в файле с конфигурацией ([https://github.com/prometheus/alertmanager/issues/504]), поэтому я добавил генерацию этого файла во время старта контейнера через скрипт `docker-entrypoint.sh`, при этом файл с секретами `alertmanager.secrets` лежит рядом с `Dockerfile` и настраивается через ansible плейбук `configure_microservices.yml` когда хост создается через terraform. Файл `alertmanager/config.yml` оставлен для проверки валидатором этого ДЗ и не используется Добавлена поддержка `alertmanager.secrets` в конфигурацию travis (данные зашифрованы в `secrets.tar.enc`)
+Advanced task *: configured integration between alertmanager and mailgun to delivery alert messages via email I couldn't find a good way to store the secret data in the alertmanager except to store them in the configuration file ([https://github.com/prometheus/alertmanager/issues/504]), so I added generating of this file in the runtime by `docker-entrypoint.sh` and the secret file `alertmanager.secrets` is located next to `Dockerfile` and configured via `configure_microservices.yml` ansible playbook while a host is created by terraform. The `alertmanager/config.yml` file is used only by the tests of this homework and used nothing else. To travis CI added support of `alertmanager.secrets` (the data is encrypted in `secrets.tar.enc`)
 
-Задание с **: добавлена загрузка дашбордов и источников данных в grafana через конфигурационные файлы, переделаны `json` файлы дашбордов для поддержки такого способа конфигурирования grafana (суть проблемы описана здесь [https://community.grafana.com/t/what-is-the-correct-way-to-save-dashboard-json-for-use-in-provisioning/5254/5])
+Advanced task **: added auto loading of grafana dashboards and datasources, refactored the dashboards `json` files to support autoloading (the root of the problem is described here [https://community.grafana.com/t/what-is-the-correct-way-to-save-dashboard-json-for-use-in-provisioning/5254/5])
 
-Задание с **: добавлен мониторинг через stackdriver prometheus exporter (полный список метрик можно посмотреть здесь [https://cloud.google.com/monitoring/api/metrics_gcp]), добавлен `GCP stackdriver` дашборд в grafana. Stackdriver сэмплирует метрики раз в 60 секунд и отдает большинство из них только через 240 секунд, что может быть проблематично для оперативного обнаружения и устранения проблем (правда позволяет собирать не только метрики хостов, но множество других метрик GCP, например storage или loadbalancing)
+Advanced task **: added monitoring via stackdriver prometheus exporter (the full list of metrics is here [https://cloud.google.com/monitoring/api/metrics_gcp]), added the `GCP stackdriver`  dashboard to a grafana. Stackdriver samples the metrics once per 60 seconds and you can access to them only after 240 seconds what can be problematic  for the prompt detection and elimination of problems (but it can not only collect the hosts metrics but many other GCP metrics too, for example storage or loadbalancing metrics)
 
 ```bash
 # stackdriver metrics
@@ -652,17 +708,17 @@ curl http://localhost:9255/metrics 2>/dev/null | grep -E "^# " -v | wc -l
 94
 ```
 
-Задание с **: в код приложения post добавлен сбор метрик INSERT_DB_LATENCY, UPDATE_DB_LATENCY, VOTE_COUNT, добавлен дашборд `Post_DB_stats.json` в grafana для отображения задержек при операциях с БД в сервисе post, в дашборд Business_Logic_Monitoring добавлен график `Vote rate`
+Advanced task **: added the INSERT_DB_LATENCY, UPDATE_DB_LATENCY, VOTE_COUNT metrics collection to the post application, added `Post_DB_stats.json` dashboard to grafana to display the db operation latencies, added the chart `Vote rate` to the Business_Logic_Monitoring dashboard
 
-Задание с ***: в конфигурацию микросервисов добавлен trickster, datasource в grafana изменены с prometheus на trickster, в конфигурацию prometheus добавлен сбор метрик с trickster
+Super advanced task))) ***: trickster added to a microservices configuration, the grafana datasources was changed from prometheus to trickster, added a trickster metrics collection to the prometheus
 
-Задание с ***: добавлена связка autoheal+AWX для автоматического исправления проблем. Добавлена ansible роль `awx_wrapper` которая автоматически устанавливает и запускает AWX, создает в нем организацию, проект, необходимые credentials, inventory, job template для исправления проблемы падения микросервиса. Добавлена конфигурация docker для сборки и запуска autoheal, добавлена ansible роль `autoheal` для автоматического запуска и настройки autoheal и окружения для его запуска (autoheal прибит гвоздями к kubernetes, поэтому для его запуска роль использует `minikube`, обсуждение проблемы здесь [https://github.com/openshift/autoheal/issues/110]). Добавлен ansible плейбук `mgmt_host.yml` для автоматического развертывания AWX+autoheal. Добавлен шаблон `mgmt_host.json` в packer для подготовки образа ноды c AWX+autoheal. Добавлен модуль `mgmt_host` в terraform для автоматического провиженинга AWX+autoheal на отдельный инстанс в GCE, в конфигурацию stage/prod terraform добавлено использование этого модуля.
+Super advanced task ***: added autoheal+AWX to automatic healing of infrastructure. Added `awx_wrapper` ansible role that deploys AWX, creates an organization, a project, the necessary credentials, an inventory and a job template there to fix the problems with the microservices. Added building and running autoheal, added `autoheal` ansible role to autodeploy autoheal (autoheal is nailed to a kubernetes so the role uses a `minikube` to launch it, the problem discussion is here [https://github.com/openshift/autoheal/issues/110]). Added `mgmt_host.yml` ansible playbook to autodeploy AWX+autoheal. Added the `mgmt_host.json` packer template to bake an AWX+autoheal node image. Added the `mgmt_host` terraform module to autoprovisioning  AWX+autoheal on the dedicated GCE instance, this module added to the stage/prod terraform configuration.
 
-### 19.2 Как запустить проект
+### 19.2 How-to start the project
 
-Предполагается, что уже настрен аккаунт mailgun и есть конфигурационные параметры для настройки alertmanager
+We assume that there is a mailgun account and the alertmanager configuration parameters
 
-- Настроить следующие файлы
+* Configure these files
 
 ```bash
 find . -name "*.example"
@@ -675,14 +731,14 @@ find . -name "*.example"
 ./monitoring/alertmanager/alertmanager.secrets.example
 ```
 
-- Установить зависимости для ansible ролей
+* Install ansible roles dependencies
 
 ```bash
 cd infra/ansible
 ansible-galaxy install -r roles/awx_wrapper/requirements.yml
 ```
 
-- Создать образы `docker_host`, `mgmt_host` через packer
+* Create the `docker_host`, `mgmt_host` images via packer
 
 ```bash
 cd ..
@@ -690,7 +746,7 @@ packer build -var-file=packer/variables.json packer/mgmt_host.json
 packer build -var-file=packer/variables.json packer/docker_host.json
 ```
 
-- Запустить через terraform, например stage окружение
+* Create a stage environment
 
 ```bash
 cd terraform
@@ -701,34 +757,34 @@ terraform init
 terraform apply -auto-approve
 ```
 
-### 19.3 Как проверить проект
+### 19.3 How-to check the project
 
-После выполнения вышеописанных шагов будет создано два инстанса в GCE `docker-host-default-001` (микросервисы), `mgmt-host-default-001` (AWX+autoheal)
+The two GCE instances would be created: `docker-host-default-001` (microservices), `mgmt-host-default-001` (AWX+autoheal)
 
-```
+```bash
 docker_host_external_ip = [
     docker_host_ip
 ]
 mgmt_host_external_ip = mgmt_host_ip
 ```
 
-при этом на `docker-host-default-001` будут доступны следующие ресурсы
+and on the `docker-host-default-001` these resources would be created:
 
-```
+```bash
 http://docker_host_ip:9292 - reddit ui
 http://docker_host_ip:3000 - grafana ui
 http://docker_host_ip:9090 - prometheus ui
 ```
 
-а на `mgmt-host-default-001`
+and `mgmt-host-default-001`
 
-```
+```bash
 http://mgmt_host_ip  - AWX ui
 ```
 
-Если убить, например, `ui` контейнер, то в slack и на почту упадет оповещение
+For example if you kill the `ui` container you will receive an alert message in the slack and an email
 
-```
+```bash
 [1] Firing
 Labels
 alertname = InstanceDown
@@ -740,9 +796,9 @@ description = ui:9292 of job ui has been down for more than 1 minute
 summary = Instance ui:9292 down
 ```
 
-а через autoheal+AWX сервис будет перезапущен с помощью AWX job template `run_microservices`, при этом в логах autoheal будут сообщения
+and autoheal+AWX will restart the failed service by the `run_microservices` AWX job template, you can check the autoheal logs:
 
-```
+```bash
 I1017 16:11:10.524400       1 alerts_worker.go:135] Checking rule 'start-services' for alert 'InstanceDown'
 I1017 16:11:10.524507       1 alerts_worker.go:103] Rule 'start-services' matches alert 'InstanceDown'
 I1017 16:11:10.524516       1 alerts_worker.go:174] Running rule 'start-services' for alert 'InstanceDown'
@@ -752,44 +808,41 @@ I1017 16:15:38.765453       1 active_jobs_worker.go:27] Going over active jobs q
 I1017 16:15:39.180936       1 awx_action_runner.go:213] Job 3 status: successful
 ```
 
-## Homework-20: Логирование и распределенная трассировка
+## Homework-20: Logging and distributed tracing
 
-Основное задание: сбор неструктурированных логов, визуализация логов, сбор структурированных логов
+Main task: collect unstructured logs, visualize logs, collect structured logs
 
-Задание со *: добавление в fluentd дополнительного фильтра для разбора двух форматов логов UI-сервиса
+Advanced task *: add an additional filter to fluentd to parse the UI service logs
 
-Задание со *: настройка распределенного трейсинга через zipkin; решение проблемы медленной загрузки поста с помощью zipkin
+Advanced task*: configure a distributed tracing via zipkin; the problem solving via zipkin
 
-### 20.1 Что было сделано
+### 20.1 What was done
 
-- Микросервисы ui, post, comment обновлены до версий, в которых реализована поддержка централизованного логирования и распределенной отладки
+* ui, post, comment microservices was updated to versions that support a centralized log collection and a distributed tracing
 
-- Добавлена конфигурация docker для fluentd
+* Added a fluentd docker configuration
 
-- Добавлена конфигурация (`docker-compose-logging.yml`) для логирования на основе EFK стека
+* Added a configuration (`docker-compose-logging.yml`) to logging via EFK stack
 
-- В Makefile добавлены цели `up_logging`, `down_logging`, `run_logging` для более простой сборки docker образов и запуска сервисов логирования
+* Added the `up_logging`, `down_logging`, `run_logging` targets to the Makefile to simplify the building and running the logging services
 
-- Для ui, post микросервисов включено логирование с помощью EFK стека
+* Enabled EFK logging for ui, post microservices
 
-- (*) Для неструктурированных логов ui сервиса в конфигурации fluentd создано два grok фильтра
+* (*) Developed two fluentd grok filters for the ui service unstructured logs
 
-- (*) Настроен распределенный трейсинг через zipkin, с помощью которого, проблема медленной загрузки постов
+* (*) Configured distributed tracing by zipkin, resolved the problem of posts slow loading
 
-- В terraform добавлены правила файерволла для kibana, zipkin
+* Added the kibana, zipkin firewall rules to the terraform
 
-- В ansible роль docker_host добавлена таска "Setup sysctl vm.max_map_count (need to start Elasticsearch docker container)"
+#### Resolving the problem of posts slow loading
 
-
-Решение проблемы медленной загрузки постов:
-
-- В трейсе zipkin видно, что загрузка поста тормозит (выполняется более 3 секунд) в микросервисе post на span `db_find_single_post`
+* In the zipkin traces we can observe that the post loading is slow down (> 3 seconds) in the `post` microservice  (span `db_find_single_post`)
 
 ```json
 {"traceId":"b75e6044b69e4b97","parentId":"10936eab56fcedd8","id":"7bf8af12a44a74dd","kind":"CLIENT","name":"db_find_single_post","timestamp":1539891825806233,"duration":3005865,"localEndpoint":{"serviceName":"post","ipv4":"172.27.0.5","port":5000}},
 ```
 
-- В коде `post_app.py` ищем `span=db_find_single_post` и видим, что `time.sleep(3)`. Этот sleep нужно удалить, пересобрать образ post контейнера и перезапустить его
+* Find `span=db_find_single_post` span in `post_app.py` and the problem is `time.sleep(3)`. You need to remove this sleep, rebuild and rerun the container
 
 ```python
 @zipkin_span(service_name='post', span_name='db_find_single_post')
@@ -802,29 +855,29 @@ def find_post(id):
 
 ```
 
-### 20.2 Как запустить проект
+### 20.2 How-to start the project
 
-Описано в п. 19.2 и дополнительно, после запуска всех приложений, нужно настроить в kibana index pattern для fluentd
+Described in 19.2 and additionally after launching all the applications you need to set up a kibana index pattern for the fluentd
 
-### 20.3 Как проверить проект
+### 20.3 How-to check the project
 
-После запуска проекта будут доступны следующие дополнительные ресурсы
+Go to these links:
 
-- <http://docker_host_ip:9411> - веб-интерфейс zipkin
+* <http://docker_host_ip:9411> - a zipkin web interface
 
-- <http://docker_host_ip:5601> - веб-интерфейс kibana
+* <http://docker_host_ip:5601> - a kibana web interface
 
-## Homework-21: Введение в Kubernetes
+## Homework-21: Introduction to Kubernetes
 
-Основное задание: Разобрать на практике все компоненты kubernetes, развернуть их вручную используя Hard Way, ознакомиться с описанием основных примитивов куввше приложения и его дальнейшим запуском в Kubernetes
+Main task: do research about the  kubernetes main components, deploy them  by "Hard Way", do research about the main primitives in a Kubernetes
 
-Задание со*: Описать установку компонентов kubernetes из туториала `Kubernetes The Hard Way` в виде Ansible-плейбуков в папке `kubernetes/ansible`
+Advanced task *: develop an ansible playbook to install Kubernetes as it described by `Kubernetes The Hard Way`
 
-### 21.1 Что было сделано
+### 21.1 What was done
 
-- Пройден туториал `Kubernetes The Hard Way` вручную, проверена загрузка deployment-ов (ui, post, mongo, comment) и запуск подов
+* Manually completed the guide `Kubernetes The Hard Way`, checked deployments (ui, post, mongo, comment) and the PODs starting
 
-- Написаны ansible плейбуки полностью автоматизирующие `Kubernetes The Hard Way`
+* Developed the ansible playbooks to automate `Kubernetes The Hard Way`
 
 ```bash
 02-client-tools.yml
@@ -850,9 +903,9 @@ def find_post(id):
 kubernetes_the_hard_way.yml
 ```
 
-### 21.2 Как запустить проект
+### 21.2 How-to start the project
 
-Предполагается, что gcloud уже настроен и есть учетная запись сервисного аккаунта google из под которой будет выполняться создание в GCP инстансов, сетей и т. д.
+We assume that a gcloud is already installed and we have a GCP service account
 
 ```bash
 cd kubernetes/ansible
@@ -866,40 +919,40 @@ export GCE_PROJECT=docker-1234
 ansible-playbook -K kubernetes_the_hard_way.yml
 ```
 
-### 21.3 Как проверить проект
+### 21.3 How-to check the project
 
-Для проверки инсталляции kubernetes нужно:
+To check the kubernetes install out:
 
-- Выполнить шаги описанные в <https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/13-smoke-test.md>
+* Execute the steps described here <https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/13-smoke-test.md>
 
-- Проверить запуск подов `ui, post, mongo, comment`
+* Check the PODs (`ui, post, mongo, comment`)
 
 ```bash
 cd kubernetes/reddit
 for DEPLOYMENT in *.yml; do kubectl apply -f $DEPLOYMENT;done
 ```
 
-## Homework-22: Kubernetes. Запуск кластера и приложения. Модель безопасности
+## Homework-22: Kubernetes. Deploying a cluster and applications. Security model
 
-Основное задание: развернуть локальное окружение для работы с k8s; развернуть k8s в GKE; запустить reddit в k8s
+Main task: deploy the local environment to work with k8s; deploy a k8s cluster to GCE; launch the reddit application in the k8s
 
-Задание со*: развернуть k8s в GKE с помощью terraform; создать YAML манифесты для включения k8s dashboard
+Advanced task *: deploy a k8s cluster to GKE by terraform; create the YAML manifests to enable a k8s dashboard
 
-### 22.1 Что было сделано
+### 22.1 What was done
 
-- Развернуто и настроено локальное окружение k8s через minicube
+* Deployed and configured the local environment (minikube)
 
-- Сконфигурированы `deployment` и `service` файлы reddit приложения
+* Configured the reddit application `deployment` and `service`
 
-- Добавлен манифест с dev `namespace`
+* Added dev `namespace` manifest
 
-- Добавлена конфигурация `terraform` для провиженинга k8s в GKE - модуль gke, который развертывает k8s кластер и настраивает файерволл
+* Developed the `terraform` configuration to provision GKE - the gke terraform module that deploy a k8s cluster and configure the firewall rules
 
-- Добавлены YAML манифесты для развертывания k8s dashboard
+* Added the YAML manifests to deploy a k8s dashboard
 
-### 22.2 Как запустить проект
+### 22.2 How-to start the project
 
-- Развернуть kubernetes в GKE
+* Deploy a kubernetes to GKE
 
 ```bash
 cd kubernetes/terraform
@@ -910,7 +963,7 @@ terraform init
 terraform apply -auto-approve=true
 ```
 
-- Сконфигурировать `kubectl` для работы с вновь созданным кластером
+* Configure `kubectl`
 
 ```bash
 export GKE_CLUSTER=cluster-name-here
@@ -919,42 +972,42 @@ export GCP_PROJECT=project-here
 gcloud container clusters get-credentials $GKE_CLUSTER --zone $GCP_ZONE --project $GCP_PROJECT
 ```
 
-- Разрешить пользователю создавать роли в Kubernetes, настроив `name: SETUP_USER_ACCOUNT_HERE` в файле `kubernetes/reddit/cluster-admin-rolebinding.yml` и выполнив
+* Allow the user to create roles in k8s cluster by set up `name: SETUP_USER_ACCOUNT_HERE` in `kubernetes/reddit/cluster-admin-rolebinding.yml` and then execute:
 
 ```bash
 kubectl apply -f cluster-admin-rolebinding.yml
 ```
 
-- Загрузить dashboard в kubernetes
+* Upload a dashboard to the  kubernetes
 
 ```bash
 kubectl apply -f kubernetes-dashboard.yaml
 kubectl apply -f kubernetes-dashboard-rolebinding.yml
 ```
 
-- Создать `dev` namespace
+* Create `dev` namespace
 
 ```bash
 kubectl apply -f dev-namespace.yml
 ```
 
-- Задеплоить reddit приложение в `dev`
+* Deploy the  reddit application to  `dev` namespace
 
 ```bash
 kubectl apply -f . -n dev
 ````
 
-### 22.3 Как проверить проект
+### 22.3 How-to check the project
 
-- Проверка dashboard. После выполнения команды
+* Check the dashboard out
 
 ```bash
 kubectl proxy
 ```
 
-должен быть доступен dashboard по адресу <http://localhost:8001/ui>
+got to link <http://localhost:8001/ui>
 
-- Проверка reddit приложеня. 
+* Check the reddit application out
 
 ```bash
 REDDIT_IP=$(kubectl get nodes  -o json | jq --raw-output --arg ext_ip "ExternalIP" '.items[0].status.addresses[] | select( .type == $ext_ip) | .address')
@@ -964,87 +1017,87 @@ REDDIT_IP=$(kubectl get nodes  -o json | jq --raw-output --arg ext_ip "ExternalI
 REDDIT_PORT=$(kubectl get services ui -n dev -o json | jq '.spec.ports[].nodePort')
 ```
 
-Приложение должно быть доступно по адресу <http://$REDDIT_IP:$REDDIT_PORT>
+Go to link <http://$REDDIT_IP:$REDDIT_PORT> to access to the application
 
 ## Homework-23: Kubernetes. Networks, Storages
 
-Основное задание: ознакомиться с типами сервисов для управления сетью (ClusterIP, NodePort, LoadBalancer), их работой в связке с `kube-dns`; ознакомиться с работой Ingress контроллера для организации доступа к приложению снаружи кластера, балансировки трафика, терминации TLS; ознакомиться с работой сетевых политик для ограничения доступа к сервису mongodb; конфигурирование быстрого, постоянного хранилища для mongodb с помощью persistent volume claim и storage class
+Main task: do research about the k8s service types (ClusterIP, NodePort, LoadBalancer) and how they work with `kube-dns`; do research about Ingress to access to cluster resources outside of a cluster, loadbalancing, TLS termination; do research about the networks policies to restrict an access to a mongodb; configure a fast and persistent storage for a mongodb by a persistent volume claim and a storage class
 
-Задание со*: описать создаваемый объект `Secret` в виде Kubernetes манифеста
+Advanced task *: describe a `Secret` as a manifest
 
-### 23.1 Что было сделано
+### 23.1 What was done
 
-- Проверена работа `kube-dns`
+* Checked out `kube-dns`
 
-- Проверена работа сервиса `ui` в режиме `nodePort`
+* Checked out `ui` service in the `nodePort` mode
 
-- Настроен сервис `LoadBalancer` для TCP балансировки, проверена его работа
+* Configured `LoadBalancer` for a TCP loadbalancing and checked how it works
 
-- Вместо `LoadBalancer` (у которого имеется ряд ограничений) настроен `Ingress controller` для L7 балансировки и терминирования TLS
+* Instead of `LoadBalancer` (that has limitations) `Ingress controller` was configured to a L7 loadbalancing and a TLS termination
 
-- (*) Объект Secret описан в виде k8s манифеста (см. `ui-ingress-secret.yml.example`)
+* (*) Secret was described as a manifest (см. `ui-ingress-secret.yml.example`)
 
-- Добавлено описание через `StorageClass` быстрого хранилища для mongodb
+* Added `StorageClass` for mongodb
 
-- Хранилище для mongodb подключено через `Persistent Volume Claim`
+* mongodb storage is connected by `Persistent Volume Claim`
 
-### 23.2 Как запустить проект
+### 23.2 How-to start the project
 
-Все аналогично описанному в п. 22.2 за исключением того, что после создания кластера терраформом нужно включить `NetworkPolicy` командами
+It is all similar to how it was described 22.2 except after the cluster creation you need to enable `NetworkPolicy`:
 
 ```bash
 gcloud beta container clusters update <cluster_name_here> --zone=<zone_here> --update-addons=NetworkPolicy=ENABLED
 gcloud beta container clusters update <cluster_name_here> --zone=<zone_here> --enable-network-policy
 ```
 
-и настроить `ui-ingress-secret.yml.example` добавив реальные сертификат и ключ вместо `tls_certificate_here`, `tls_key_here`
+and set up `ui-ingress-secret.yml.example` by adding the real certificates and key instead `tls_certificate_here`, `tls_key_here`
 
-### 23.3 Как проверить проект
+### 23.3 How-to check the projects
 
-- Для проверки `Ingress` контроллера нужно получить адрес командой
+* To check`Ingress` controller out you need to get the IP address:
 
 ```bash
 INGRESS_ADDRESS=$(kubectl get ingress -n dev -o json | jq --raw-output '.items[].status.loadBalancer.ingress[].ip')
 ```
 
-и проверить в браузере, что reddit приложение открывается через https по этому адресу <https://INGRESS_ADDRESS>
+and check that the application is working <https://INGRESS_ADDRESS>
 
-- Для проверки `Persistent Volume Claim` нужно создать пост в reddit приложении, затем удалить mongodb deploymlent и снова запустить
+* To check `Persistent Volume Claim` out you need to create a post in the reddit application, remove the mongodb deployment and start the mongodb again:
 
 ```bash
 kubectl delete deploy mongo -n dev
 kubectl apply -f mongo-deployment.yml -n dev
 ```
 
-при этом ранее созданный пост должен остаться.
+the previously created post should be restored
 
-## Homework-24: CI/CD в Kubernetes
+## Homework-24: CI/CD in Kubernetes
 
-Основное задание: работа с helm, развертывание gitlab в kubernetes, запуск CI/CD конвейера в Kubernetes
+Main task: working with helm, deploying a gitlab to a kubernetes, launching a CI/CD pipeline in a Kubernetes
 
-Задание со*: связать пайпланы сборки образов и деплоя на staging и production так, чтобы после релиза образа из ветки мастер - запускался деплой уже новой версии приложения на production
+Advanced task *: connect the image building pipeline with the deploying pipeline so after a release of an image from master branch the deploy of the new version was started to production environment
 
-### 24.1 Что было сделано
+### 24.1 What was done
 
-- Установлен helm (локально) и tiller (в k8s)
+* Installed helm and tiller
 
-- Для микросервисов post, reddit, ui разработаны `helm charts`
+* Developed post, reddit, ui `helm charts`
 
-- В k8s развернут и настроен gitlab omnibus
+* gitlab omnibus installed and configured to k8s
 
-- Созданы пайпланы в gitlab для ui, commit, post сервисов со стадиями `review/stop_review`
+* Developed the gitlab pipelines to  `review/stop_review` the microservices
 
-- Создан пайплайн для деплоя reddit приложения в k8s на stage/prod
+* Developed the pipeline to deploy the  reddit application to the stage/prod environments in the k8s cluster
 
-- (*) Связаны пайплайны сборки образов и деплоя на staging и production
+* (*) The building pipelines and the deploying pipelines are connected
 
-- В конфигурацию terraform добавлены node_pool (defaultpool, bigpool) для более гибкой настройки GKE. В terraform добавлен провиженер GKE настраивающий права, устанавливающий tiller, gitlab и т. д
+* Added the node_pool (defaultpool, bigpool) to the  terraform configuration to fine tuning GKE. Added provisioner to terraform to set up permissions, installing a gitlab and so on
 
-### 24.2 Как запустить проект
+### 24.2 How-to check the project
 
-Предполагается, что на локальной машине установлены terraform, kubectl, helm
+We assume that terraform, kubectl, helm are installed on the local host
 
-- Развернуть kubernetes в GKE, при этом будут развернуты tiller и gitlab-omnibus
+* Deploy a kubernetes to GKE, tiller and gitlab-omnibus also will be installed
 
 ```bash
 cd kubernetes/terraform
@@ -1055,63 +1108,63 @@ terraform init
 terraform apply -auto-approve=true
 ```
 
-- В gitlab нужно создать группу и проекты ui, comment, post, reddit-deploy
+* Create a group and set up the projects for these microservices: ui, comment, post, reddit-deploy
 
-- Для reddit-deploy нужно создать триггер запуска (который будет использован в остальных пайпланах) `reddit_deploy`, при этом нужно сохранить токен в переменной `REDDIT_DEPLOY_TOKEN`
+* Create a trigger for reddit-deploy (which will be used by the other pipelines participants) and save the token to `REDDIT_DEPLOY_TOKEN`
 
-- В gitlab в настройках группы добавить следующие переменные:
+* Add these variables to the group settings in the Gitlab:
 
-```
+```bash
 CI_REGISTRY_USER - логин в dockerhub
 CI_REGISTRY_PASSWORD - пароль в dockerhub
 REDDIT_DEPLOY_TOKEN - - токен для запуска reddit-deploy из других пайплайнов
 ```
 
-- Запушить исходный код в соответствующие проекты ui, comment, post, reddit-deploy
+* Push source code of ui, comment, post, reddit-deploy to the gitlab projects:
 
-### 24.3 Как проверить проект
+### 24.3 How-to check the project
 
-- Если изменения произошли не в ветке `master`, то после сборки соответствующего микросервиса в gitlab, в `environments` будет ссылка на `review`.
+* If your changes was occurred not in the `master` branch after building the corresponding microservice  `environments` will contain a link to `review`.
 
-- Если изменнеия произошли в ветке `master`, то сначала запустится пайплайн для билда соответствующего микросервиса, после которого будет запущен пайплайн для деплоя на stage/prod
+* If your changes occurred in the `master` branch for the first the build pipeline will be launched to build the corresponding microservice and then the deploy pipeline will be triggered to deploy the stage/prod environments
 
-- Список запущенных релизов можно увидеть командой
+* To check the list of installed releases:
 
 ```bash
 helm ls
 ```
 
-## Homework-25: Kubernetes. Мониторинг и логирование
+## Homework-25: Kubernetes. Monitoring and logging
 
-Основное задание: развертывание prometheus в k8s, настройка prometheus и grafana для сбора метрик, настройка EFK для сбора логов
+Main task: deploying a prometheus to a k8s, set up a prometheus and a grafana to collect metrics, set up EFK to collect logs
 
-Задание со*: запуск alertmanager в k8s и настройка правил для контроля за доступностью api-сервера и хостов k8s
+Advanced task *: install an alertmanager to k8s and set up the k8s api server and hosts availability rules
 
-Задание со*: создать helm-чарт для установки стека EFK
+Advanced tasks *: create a helm chart to install EFK stack
 
-### 25.1 Что было сделано
+### 25.1 What was done
 
-- Выключен stackdriver (мониторинг и логирование) в процессе первоначальной установки и настройки k8s
+* Disabled stackdriver
 
-- Добавлен prometheus helm-чарт c kube-state-metrics и node-exporter
+* Added a prometheus helm with a kube-state-metrics and a node-exporter
 
-- Добавлены `reddit-production, post-endpoints, comment-endpoints, ui-endpoints` jobs в конфигурацию prometheus helm-чарта
+* Added `reddit-production, post-endpoints, comment-endpoints, ui-endpoints` jobs to a prometheus helm chart
 
-- Добавлена установка grafana в процесс первоначальной установки и настройки k8s
+* Added a grafana installation to the k8s bootstrapping process
 
-- Для `Business_Logic_Monitoring, Post_DB_stats, UI_Service_Monitoring` grafana dashboard включена параметризация через namespaces
+* Parametrization via namespaces for `Business_Logic_Monitoring, Post_DB_stats, UI_Service_Monitoring` grafana dashboard
 
-- Добавлены новые `kubernetes cluster monitoring, Kubernetes deployment metrics` дашборды в grafana
+* Added the new `kubernetes cluster monitoring, Kubernetes deployment metrics` grafana dashboards
 
-- (*) В helm-чарте prometheus включен alertmanager, добавлены алерты `NodeDown`, `APIServerDown`
+* (*) Enabled alertmanager in the prometheus helm chart, added the  `NodeDow`, `APIServerDown` alerts
 
-- (*) Добавлен helm-чарт для установки EFK стека, добавлена установка EFK стека в процесс первоначальной установки и настройки k8s
+* (*) Developed the EFK helm chart, added EFK installation to the k8s bootstrapping process
 
-### 25.2 Как запустить проект
+### 25.2 How-to start the project
 
-Предполагается, что на локальной машине установлены terraform, kubectl, helm
+We assume that terraform, kubectl, helm are installed on the local host
 
-- Развернуть kubernetes в GKE, при этом будут развернуты tiller, prometheus, alertmanager, grafana, EFK
+* Deploy a kubernetes in GKE and tiller, prometheus, alertmanager, grafana, EFK will be deployed automatically
 
 ```bash
 cd kubernetes/terraform
@@ -1122,13 +1175,13 @@ terraform init
 terraform apply -auto-approve=true
 ```
 
-- После бутстрапа в grafana нужно создать `Prometheus server` datasource и импортировать `Business_Logic_Monitoring, Post_DB_stats, UI_Service_Monitoring, Kubernetes cluster monitoring, Kubernetes deployment metrics` дашборды из каталога `monitoring/grafana/dashboards`
+* After the cluster bootstrapping create the `Prometheus server` datasources in the grafana and import `Business_Logic_Monitoring, Post_DB_stats, UI_Service_Monitoring, Kubernetes cluster monitoring, Kubernetes deployment metrics` dashboards from `monitoring/grafana/dashboards` directory
 
-- В kibana нужно создать шаблон индекса `fluentd-*`
+* Create index `fluentd-*` in the kibana
 
-### 25.3 Как проверить проект
+### 25.3 How-to check the project
 
-- Получить внешний IP адрес приложений и изменить hosts файл
+* Get an external IP address of applications and add it to a hosts file:
 
 ```bash
 export HOSTS_ENTRY="$(kubectl get svc | grep nginx-nginx-ingress-controller | awk '{print $4}') reddit-prometheus reddit-grafana reddit-kibana"
@@ -1136,9 +1189,9 @@ export HOSTS_ENTRY="$(kubectl get svc | grep nginx-nginx-ingress-controller | aw
 echo "$HOSTS_ENTRY" | sudo tee -a /etc/hosts
 ```
 
-при этом prometheus, grafana, kibana будут доступны по адресам <http://reddit-prometheus>, <http://reddit-grafana>, <http://reddit-kibana>
+go to the links <http://reddit-prometheus>, <http://reddit-grafana>, <http://reddit-kibana> to access the prometheus, grafana, kibana respectively
 
-- Запустить несколько инстансов reddit приложения
+* Launch some instances of the reddit application
 
 ```bash
 helm upgrade reddit-test ./reddit —install
@@ -1146,10 +1199,10 @@ helm upgrade production --namespace production  ./reddit --install
 helm upgrade staging --namespace staging  ./reddit —instal
 ```
 
-- В дашбордах графаны `Business_Logic_Monitoring, Post_DB_stats, UI_Service_Monitoring` можно выбрать соответствующий namespace и получить метрики reddit приложения только для этого namespace
+* In the grafana dashboards `Business_Logic_Monitoring, Post_DB_stats, UI_Service_Monitoring` you can select the corresponding namespace and get the metrics of the reddit application only for this namespace
 
-- Дашборды графаны `Kubernetes cluster monitoring, Kubernetes deployment metrics` отображают текущее состояние k8s
+* Grafana dashboards `Kubernetes cluster monitoring, Kubernetes deployment metrics` show the current state of the k8s cluster
 
-- При падении ноды k8s (например, выключении) срабатывает алерт `NodeDown` - оповещение должно приходить в slack канал и на почту
+* If the k8s node is failed  (for instance, after a shutdown) the alert `NodeDown` will be sent to the slack channel and the email
 
-- В веб-интерфейсе kibana после создания индекса, доступны логи reddit приложений
+* You can access to the logs of the reddit application in the kibana web interface
