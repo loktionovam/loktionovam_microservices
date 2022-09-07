@@ -1,14 +1,14 @@
 gce_py
 =========
 
-Роль для настройки dynamic inventory в ansible через gce.py
+The role to configure the ansible dynamic inventory via  gce.py
 
 Requirements
 ------------
 
-- На целевой машине должен существовать файл с credentials в формате json от google service account
+- There should be a GCE service account credentials file in a json format
 
-- Предполагается, что структура каталогов ansible выглядит так
+- The structure of the directories looks like:
 
 ```bash
 ├── environments
@@ -21,25 +21,25 @@ Requirements
 └── ansible.cfg
 ```
 
-- Предполагается, что ansible.cfg расположен в корне репозитория ansible
+- `ansible.cfg` is located in the root of the ansible repository
 
 Role Variables
 --------------
 
-- gce_py_ansible_path - путь к репозиторию ansible в котором нужно настроить dynamic inventory
+- gce_py_ansible_path - the path to the ansible repository where the dynamic inventory should be configured
 
-- gce_py_env - окружение (имя подкаталога в environments). Например, prod
+- gce_py_env - the environment name (the name of the subdirectory in the environments directory). For example, prod
 
-- gce_py_pem_file_path - путь к файлу с credentials от google service account
+- gce_py_pem_file_path - the path to a google service account credentials file
 
-- gce_py_client_email - email от google service account
+- gce_py_client_email - the google service account email address
 
-- gce_py_project_id - название проекта GCP
+- gce_py_project_id - GCP project name
 
 Dependencies
 ------------
 
-Нет
+None
 
 Example Playbook
 ----------------
